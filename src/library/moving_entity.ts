@@ -24,11 +24,11 @@ export class MovingEntity extends Entity {
     this._collidable = props.collidable;
   }
 
-  public get velocity(): Vector2 {
+  public get getVelocity(): Vector2 {
     return this._velocity;
   }
 
-  public set velocity(dir: Vector2) {
+  public set setVelocity(dir: Vector2) {
     this._velocity = dir;
   }
 

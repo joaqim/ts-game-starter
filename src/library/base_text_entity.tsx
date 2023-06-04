@@ -84,7 +84,7 @@ export class BaseTextEntity<T extends BaseGameState> extends Entity {
       </foreignObject>
     </svg>`;
 
-    await new Promise(resolve => {
+    await new Promise<void>(resolve => {
       const img = new Image();
       
       img.onload = () => {

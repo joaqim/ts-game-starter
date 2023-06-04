@@ -1,4 +1,5 @@
 import { Entity } from "../library/entity";
+import { Vector2 } from "../library/geometry/vector2";
 import { Assets } from "./assets";
 import { IGameState } from "Library";
 
@@ -9,6 +10,7 @@ export class Player extends Entity {
   constructor() {
     super({
       name: "Player",
+      collidable: true,
     });
 
     this.graphic = new Entity({ name: "PlayerGraphic" });
@@ -18,21 +20,24 @@ export class Player extends Entity {
   }
 
   move(state: IGameState) {
-    if (state.keys.down.Right) {
-      this.x += this.speed;
-    }
+    let x = 0;
+    let y = 0;
 
+    if (state.keys.down.Right) {
+      x += this.speed;
+    }
     if (state.keys.down.Left) {
-      this.x -= this.speed;
+      x -= this.speed;
     }
 
     if (state.keys.down.Up) {
-      this.y -= this.speed;
+      y -= this.speed;
+    }
+    if (state.keys.down.Down) {
+      y += this.speed;
     }
 
-    if (state.keys.down.Down) {
-      this.y += this.speed;
-    }
+    this.velocity = new Vector2(x, y);
   }
 
   update(state: IGameState) {

@@ -2,7 +2,6 @@ import { Rectangle, Texture } from 'pixi.js'
 import { AssetName } from '../game/assets';
 import { Tile } from './tilemap/tilemap_types';
 import { TypesafeLoader } from './typesafe_loader';
-import { C } from '../game/constants';
 
 export class TextureCache {
   static Cache: { [key: string]: Texture } = {};

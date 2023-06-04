@@ -1,6 +1,5 @@
 import { Util } from "../util";
-import * as fs from 'fs';
-import * as path from 'path'
+import chokidar from 'chokidar';
 
 const configPath = process.argv[2];
 const configDirectory = path.dirname(configPath);
@@ -179,9 +178,15 @@ function writeAssetsFile() {
   fs.writeFileSync(assetFilePath, buildAssetsFile());
 }
 
-fs.watch(
-  assetDirectory, 
-  { recursive: true }, 
+// This code uses chokidar.watch to monitor changes in the assetDirectory directory
+// and call the writeAssetsFile function when a change is detected.
+// The ignored option is used to ignore hidden files and directories.
+// The persistent option is used to continue watching files even after they have been deleted.
+// The Util.Debounce() function is used to debounce the changes to prevent multiple writes in a short period of time
+chokidar
+  .watch(assetDirectory, { ignored: /(^|[\/\\])\../, persistent: true })
+  .on(
+    "change",
   Util.Debounce(() => {
     writeAssetsFile();
   })

@@ -15,6 +15,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
+    "-prebuild": "ts-node --project ./src/library/scripts/tsconfig.json ./src/library/scripts/assets_builder.ts ./src/game/config.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -35,5 +36,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "ts-node": "^10.9.1"
   }
 }

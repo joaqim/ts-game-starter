@@ -160,7 +160,7 @@ export class Hierarchy extends React.Component<HierarchyProps, {
 
           {
             children.map(child => {
-              return <Hierarchy selectedEntity={this.props.selectedEntity} setMoused={this.props.setMoused} setSelected={this.props.setSelected} root={child} gameState={this.props.gameState} />
+              return <Hierarchy key={child.id} selectedEntity={this.props.selectedEntity} setMoused={this.props.setMoused} setSelected={this.props.setSelected} root={child} gameState={this.props.gameState} />
             })
           }
         </div>

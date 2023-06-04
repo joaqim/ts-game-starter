@@ -8,7 +8,6 @@ import { GameReference, FixedStageName, StageName, ParallaxStageName } from "./b
 import { CoroutineId, GameCoroutine } from "./coroutine_manager";
 import { IGameState, Mode } from "Library";
 import { HitInfo } from "./collision_handler";
-import { serialized } from "./serializer";
 
 export enum EntityType {
   NormalEntity,

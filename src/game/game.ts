@@ -22,14 +22,14 @@ export class Game extends BaseGame<typeof AssetsToLoad> {
         tick: 0,
 
         player: undefined as any,
-      }
+      },
     });
 
     Game.Instance = this;
   }
 
   initialize() {
-    this.stage.addChild(this.state.player = new Player());
+    this.stage.addChild((this.state.player = new Player()));
     const map = new TiledTilemap({
       json: Assets.getResource("map"),
       assets: Assets,
@@ -38,12 +38,14 @@ export class Game extends BaseGame<typeof AssetsToLoad> {
       customObjects: [],
     });
 
-    const layers = map.loadLayersInRectCached(new Rect({
+    const layers = map.loadLayersInRectCached(
+      new Rect({
       x: 0,
       y: 0,
       width: 640,
       height: 640,
-    }));
+      })
+    );
 
     for (const layer of layers) {
       this.stage.addChild(layer.entity);
