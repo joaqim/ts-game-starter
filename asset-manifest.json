@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/ts-game-starter/static/js/main.54db5d4f.chunk.js",
+    "main.js.map": "/ts-game-starter/static/js/main.54db5d4f.chunk.js.map",
+    "runtime-main.js": "/ts-game-starter/static/js/runtime-main.837e6999.js",
+    "runtime-main.js.map": "/ts-game-starter/static/js/runtime-main.837e6999.js.map",
+    "static/js/2.cc51407a.chunk.js": "/ts-game-starter/static/js/2.cc51407a.chunk.js",
+    "static/js/2.cc51407a.chunk.js.map": "/ts-game-starter/static/js/2.cc51407a.chunk.js.map",
+    "index.html": "/ts-game-starter/index.html",
+    "precache-manifest.cbd09b7bf12ee7edefb902a4da9bd8db.js": "/ts-game-starter/precache-manifest.cbd09b7bf12ee7edefb902a4da9bd8db.js",
+    "service-worker.js": "/ts-game-starter/service-worker.js",
+    "static/js/2.cc51407a.chunk.js.LICENSE.txt": "/ts-game-starter/static/js/2.cc51407a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.837e6999.js",
+    "static/js/2.cc51407a.chunk.js",
+    "static/js/main.54db5d4f.chunk.js"
+  ]
+}
