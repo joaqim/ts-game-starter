@@ -11,7 +11,7 @@ public/sunset.psd
 /coverage
 
 # production
-# /build
+/build
 
 # misc
 .DS_Store

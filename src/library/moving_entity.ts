@@ -6,9 +6,9 @@ import { BaseGame } from "./base_game";
 import { BaseGameState } from "./base_state";
 
 export class MovingEntity extends Entity {
-  entityType  = EntityType.MovingEntity;
+  entityType = EntityType.MovingEntity;
 
-  private _velocity   = Vector2.Zero;
+  private _velocity = Vector2.Zero;
   protected _maxSpeed = 50;
 
   constructor(props: {
@@ -36,15 +36,13 @@ export class MovingEntity extends Entity {
     return this._maxSpeed;
   }
 
-  public update = (state: BaseGameState) => {
-
-  }
+  public update = (state: BaseGameState) => {};
 
   // Currently just stops moving.
   collide = (other: Entity, intersection: Rect) => {
-    // if (!this._collidable) return;
-
-    // this.velocity = Vector2.Zero;
+    console.log(`collide: ${this._collidable}`);
+    if (!this._collidable) return;
+    this.velocity = Vector2.Zero;
   };
 
   // It's just shy

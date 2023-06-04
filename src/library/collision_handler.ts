@@ -27,7 +27,9 @@ export class CollisionHandler {
     tileHeight: number;
   }) {
     if (props.tileWidth !== props.tileHeight) {
-      throw new Error("Collision handler does not currently support tileWidth != tileHeight");
+      throw new Error(
+        "Collision handler does not currently support tileWidth != tileHeight"
+      );
     }
 
     this._canvasWidth = props.canvasWidth;
@@ -47,10 +49,14 @@ export class CollisionHandler {
       cellSize: 4 * this._tileSize,
     });
 
-    const collideableEntities = entities.values().filter(x => x.isCollideable() || x.isInteractable());
+    const collideableEntities = entities
+      .values()
+      .filter((x) => x.isCollideable() || x.isInteractable());
 
     for (const entity of collideableEntities) {
-      const collisionRect = entity.collisionBounds().add(entity.positionAbsolute());
+      const collisionRect = entity
+        .collisionBounds()
+        .add(entity.positionAbsolute());
 
       if (collisionRect.intersects(bounds)) {
         const rectOrRectGroup = collisionRect;
@@ -66,20 +72,29 @@ export class CollisionHandler {
     return grid;
   };
 
-  getHitsAt = (grid: CollisionGrid, bounds: Rect | RectGroup, entity: Entity): { hits: CollisionResultRect[]; interactions: CollisionResultRect[] } => {
+  getHitsAt = (
+    grid: CollisionGrid,
+    bounds: Rect | RectGroup,
+    entity: Entity
+  ): { hits: CollisionResultRect[]; interactions: CollisionResultRect[] } => {
     const xHits =
       bounds instanceof Rect
         ? grid.getRectCollisions(bounds, entity)
         : grid.getRectGroupCollisions(bounds, entity);
 
-    const hits = xHits.filter(x => !x.otherEntity || (x.otherEntity && !x.otherEntity.isInteractable()));
-    const interactions = xHits.filter(x => (x.otherEntity && x.otherEntity.isInteractable()));
+    const hits = xHits.filter(
+      (x) =>
+        !x.otherEntity || (x.otherEntity && !x.otherEntity.isInteractable())
+    );
+    const interactions = xHits.filter(
+      (x) => x.otherEntity && x.otherEntity.isInteractable()
+    );
 
     return {
       hits,
       interactions,
     };
-  }
+  };
 
   resolveCollisions = (props: {
     entities: HashSet<Entity>;
@@ -94,9 +109,13 @@ export class CollisionHandler {
         interactions: [],
       };
 
-      if (entity.velocity.x === 0 && entity.velocity.y === 0) { continue; }
+      if (entity.velocity.x === 0 && entity.velocity.y === 0) {
+        continue;
+      }
 
-      let updatedBounds = entity.collisionBounds().add(entity.positionAbsolute());
+      let updatedBounds = entity
+        .collisionBounds()
+        .add(entity.positionAbsolute());
 
       const xVelocity = new Vector2({ x: entity.velocity.x, y: 0 });
       const yVelocity = new Vector2({ x: 0, y: entity.velocity.y });
@@ -108,7 +127,11 @@ export class CollisionHandler {
       delta = delta.add(xVelocity);
       updatedBounds = updatedBounds.add(xVelocity);
 
-      const { hits: xHits, interactions: xInteractions } = this.getHitsAt(grid, updatedBounds, entity);
+      const { hits: xHits, interactions: xInteractions } = this.getHitsAt(
+        grid,
+        updatedBounds,
+        entity
+      );
 
       if (xHits.length > 0) {
         hitInfo.hit = true;
@@ -123,7 +146,11 @@ export class CollisionHandler {
           updatedBounds = updatedBounds.add(new Vector2(1, 0));
           delta = delta.add(new Vector2(1, 0));
 
-          const { hits: newXHits } = this.getHitsAt(grid, updatedBounds, entity);
+          const { hits: newXHits } = this.getHitsAt(
+            grid,
+            updatedBounds,
+            entity
+          );
 
           if (newXHits.length > 0) {
             updatedBounds = updatedBounds.add(new Vector2(-1, 0));
@@ -143,7 +170,11 @@ export class CollisionHandler {
       delta = delta.add(yVelocity);
       updatedBounds = updatedBounds.add(yVelocity);
 
-      const { hits: yHits, interactions: yInteractions } = this.getHitsAt(grid, updatedBounds, entity);
+      const { hits: yHits, interactions: yInteractions } = this.getHitsAt(
+        grid,
+        updatedBounds,
+        entity
+      );
 
       if (yHits.length > 0) {
         hitInfo.hit = true;
@@ -158,7 +189,11 @@ export class CollisionHandler {
           updatedBounds = updatedBounds.add(new Vector2(0, 1));
           delta = delta.add(new Vector2(0, 1));
 
-          const { hits: newYHits } = this.getHitsAt(grid, updatedBounds, entity);
+          const { hits: newYHits } = this.getHitsAt(
+            grid,
+            updatedBounds,
+            entity
+          );
 
           if (newYHits.length > 0) {
             updatedBounds = updatedBounds.add(new Vector2(0, -1));
