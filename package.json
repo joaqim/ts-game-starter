@@ -1,7 +1,9 @@
 {
-  "name": "ld-starter",
+  "name": "ts-game-starter",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://joaqim.com/ts-game-starter",
+  "repository": "https://github.com/joaqim/ts-game-starter",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -16,6 +18,8 @@
   },
   "scripts": {
     "-prebuild": "ts-node --project ./src/library/scripts/tsconfig.json ./src/library/scripts/assets_builder.ts ./src/game/config.json",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -39,6 +43,7 @@
   },
   "devDependencies": {
     "chokidar": "^3.5.3",
+    "gh-pages": "^5.0.0",
     "ts-node": "^10.9.1"
   }
 }
